@@ -1,0 +1,11 @@
+{
+  "name": "tetex-public",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/ui"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow npm"
+  }
+}
