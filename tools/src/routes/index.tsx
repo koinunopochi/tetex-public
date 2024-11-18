@@ -23,24 +23,24 @@ const RegexTester = React.lazy(() => import('@pages/regexTester/RegexTester'));
 export const createRoutes = () => {
   const toolRoutes = (
     <>
-      <Route path="/tools" element={<ToolsRootPage />} />
-      <Route path="/tools/base64" element={<Base64Converter />} />
-      <Route path="/tools/format" element={<FormatTool />} />
-      <Route path="/tools/newline-converter" element={<NewlineConverter />} />
+      <Route path="/" element={<ToolsRootPage />} />
+      <Route path="/base64" element={<Base64Converter />} />
+      <Route path="/format" element={<FormatTool />} />
+      <Route path="/newline-converter" element={<NewlineConverter />} />
       <Route
-        path="/tools/url-encoder-decoder"
+        path="/url-encoder-decoder"
         element={<URLEncoderDecoder />}
       />
       <Route
-        path="/tools/unix-timestamp-converter"
+        path="/unix-timestamp-converter"
         element={<UnixTimestampConverter />}
       />
       <Route
-        path="/tools/color-code-converter"
+        path="/color-code-converter"
         element={<ColorCodeConverter />}
       />
-      <Route path="/tools/regex-tester" element={<RegexTester />} />
-      <Route path="/tools/*" element={<Navigate to="/tools" />} />
+      <Route path="/regex-tester" element={<RegexTester />} />
+      <Route path="/*" element={<Navigate to="" />} />
     </>
   );
 
