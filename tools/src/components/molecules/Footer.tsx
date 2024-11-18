@@ -1,11 +1,10 @@
-import React from 'react';
 import { Heart, Mail, Github } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-background-main border-t border-primary">
+    <footer className="w-full bg-background-main border-t border-primary mt-10">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* ロゴとコピーライト */}
