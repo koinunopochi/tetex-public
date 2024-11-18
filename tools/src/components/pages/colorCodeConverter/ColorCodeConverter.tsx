@@ -1,3 +1,5 @@
+import { TOOL_SCHEMAS } from '@/constants/toolSchemas';
+import { SEOHead } from '@/layout/SEOHeadLayout/SEOHeadLayout';
 import { useState, useEffect } from 'react';
 
 const ColorCodeConverter = () => {
@@ -30,63 +32,83 @@ const ColorCodeConverter = () => {
     const newRgb = { ...rgb, [color]: parseInt(value) };
     setRgb(newRgb);
     setHex(
-      `#${newRgb.r.toString(16).padStart(2, '0')}${newRgb.g.toString(16).padStart(2, '0')}${newRgb.b.toString(16).padStart(2, '0')}`
+      `#${newRgb.r.toString(16).padStart(2, '0')}${newRgb.g
+        .toString(16)
+        .padStart(2, '0')}${newRgb.b.toString(16).padStart(2, '0')}`
     );
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6 border rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">カラーコード変換ツール</h2>
-      <div className="space-y-4">
-        <div className="flex items-center space-x-4">
-          <input
-            type="color"
-            value={hex}
-            onChange={handleHexChange}
-            className="w-12 h-12 bg-background-secondary"
-          />
-          <input
-            type="text"
-            value={hex}
-            onChange={handleHexChange}
-            className="p-2 border rounded bg-background-secondary"
-          />
+    <>
+      <SEOHead
+        title="カラーコード変換ツール"
+        description="HEX、RGB、HSLなどのカラーコードを相互に変換できるオンラインツール。Web制作やデザイン作業に便利なカラーピッカー機能付き。"
+        path="/tools/color"
+        type="article"
+        keywords={[
+          'カラーコード',
+          'HEX',
+          'RGB',
+          'HSL',
+          'カラーピッカー',
+          'Webカラー',
+          'デザイン',
+        ]}
+        schema={TOOL_SCHEMAS.colorConverter}
+      />
+      <div className="w-full max-w-2xl mx-auto p-6 border rounded-lg">
+        <h2 className="text-2xl font-bold mb-4">カラーコード変換ツール</h2>
+        <div className="space-y-4">
+          <div className="flex items-center space-x-4">
+            <input
+              type="color"
+              value={hex}
+              onChange={handleHexChange}
+              className="w-12 h-12 bg-background-secondary"
+            />
+            <input
+              type="text"
+              value={hex}
+              onChange={handleHexChange}
+              className="p-2 border rounded bg-background-secondary"
+            />
+          </div>
+          <div className="flex space-x-4">
+            <input
+              type="number"
+              min="0"
+              max="255"
+              value={rgb.r}
+              onChange={(e) => handleRgbChange('r', e.target.value)}
+              className="p-2 border rounded w-20 bg-background-secondary"
+            />
+            <input
+              type="number"
+              min="0"
+              max="255"
+              value={rgb.g}
+              onChange={(e) => handleRgbChange('g', e.target.value)}
+              className="p-2 border rounded w-20 bg-background-secondary"
+            />
+            <input
+              type="number"
+              min="0"
+              max="255"
+              value={rgb.b}
+              onChange={(e) => handleRgbChange('b', e.target.value)}
+              className="p-2 border rounded w-20 bg-background-secondary"
+            />
+          </div>
+          <div className="p-2 border rounded bg-background-secondary">
+            RGB: rgb({rgb.r}, {rgb.g}, {rgb.b})
+          </div>
+          <div
+            className="w-full h-20 rounded"
+            style={{ backgroundColor: hex }}
+          ></div>
         </div>
-        <div className="flex space-x-4">
-          <input
-            type="number"
-            min="0"
-            max="255"
-            value={rgb.r}
-            onChange={(e) => handleRgbChange('r', e.target.value)}
-            className="p-2 border rounded w-20 bg-background-secondary"
-          />
-          <input
-            type="number"
-            min="0"
-            max="255"
-            value={rgb.g}
-            onChange={(e) => handleRgbChange('g', e.target.value)}
-            className="p-2 border rounded w-20 bg-background-secondary"
-          />
-          <input
-            type="number"
-            min="0"
-            max="255"
-            value={rgb.b}
-            onChange={(e) => handleRgbChange('b', e.target.value)}
-            className="p-2 border rounded w-20 bg-background-secondary"
-          />
-        </div>
-        <div className="p-2 border rounded bg-background-secondary">
-          RGB: rgb({rgb.r}, {rgb.g}, {rgb.b})
-        </div>
-        <div
-          className="w-full h-20 rounded"
-          style={{ backgroundColor: hex }}
-        ></div>
       </div>
-    </div>
+    </>
   );
 };
 

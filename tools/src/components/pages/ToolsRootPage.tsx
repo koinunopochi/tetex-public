@@ -1,3 +1,5 @@
+import { SEOHead } from '@/layout/SEOHeadLayout/SEOHeadLayout';
+import { generateToolSchema } from '@/utils/seoHelpers';
 import { WifiOff, Info, Wifi } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -243,79 +245,109 @@ const ToolsRootPage = () => {
     ],
   };
 
+    const portalSchema = generateToolSchema({
+      name: 'tetex developer tools',
+      description: '開発者のための便利なツールを提供するポータルサイト',
+      features: [
+        'JSON整形・バリデーション',
+        '正規表現テスト',
+        '文字列変換ツール',
+        '開発者ユーティリティ',
+      ],
+      programmingLanguage: ['TypeScript', 'React'],
+    });
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-primary">開発ツール</h1>
+    <>
+      <SEOHead
+        title="開発者向けツール集"
+        description="開発者のための便利なツールを提供するポータルサイト。JSONフォーマッター、正規表現テスター、その他開発に役立つツールを集めています。"
+        path="/"
+        keywords={[
+          '開発者ツール',
+          'プログラミング',
+          'Web開発',
+          'JSON',
+          '正規表現',
+          'ユーティリティ',
+        ]}
+        schema={portalSchema}
+      />
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6 text-primary">開発ツール</h1>
 
-      {/* 目次セクション */}
-      <nav className="mb-8 p-4 bg-background-secondary rounded-lg">
-        <h2 className="text-xl font-bold mb-2 text-primary">目次</h2>
-        <ul className="space-y-2">
-          <li>
-            <a
-              href="#internal-tools"
-              className="link transition-colors hover:text-accent1"
-            >
-              内部ツール
-            </a>
-          </li>
-          <li>
-            <a
-              href="#external-tools"
-              className="link transition-colors hover:text-accent1"
-            >
-              外部おすすめツール・サイト
-            </a>
-            <ul className="ml-4 mt-1 space-y-1">
-              {Object.keys(externalTools).map((category) => (
-                <li key={category}>
-                  <a
-                    href={`#${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="link transition-colors hover:text-accent1"
-                  >
-                    {category}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </li>
-        </ul>
-      </nav>
+        {/* 目次セクション */}
+        <nav className="mb-8 p-4 bg-background-secondary rounded-lg">
+          <h2 className="text-xl font-bold mb-2 text-primary">目次</h2>
+          <ul className="space-y-2">
+            <li>
+              <a
+                href="#internal-tools"
+                className="link transition-colors hover:text-accent1"
+              >
+                内部ツール
+              </a>
+            </li>
+            <li>
+              <a
+                href="#external-tools"
+                className="link transition-colors hover:text-accent1"
+              >
+                外部おすすめツール・サイト
+              </a>
+              <ul className="ml-4 mt-1 space-y-1">
+                {Object.keys(externalTools).map((category) => (
+                  <li key={category}>
+                    <a
+                      href={`#${category.toLowerCase().replace(/\s+/g, '-')}`}
+                      className="link transition-colors hover:text-accent1"
+                    >
+                      {category}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
+        </nav>
 
-      {/* 内部ツールセクション */}
-      <section id="internal-tools">
-        <h2 className="text-2xl font-bold mb-4 text-primary">内部ツール</h2>
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
-          {internalTools.map((tool, index) => (
-            <ToolCard key={index} {...tool} />
-          ))}
-        </div>
-      </section>
-
-      {/* 外部ツールセクション */}
-      <section id="external-tools">
-        <h2 className="text-2xl font-bold mb-4 text-primary">
-          外部おすすめツール・サイト
-        </h2>
-        <p className="text-error mb-4">
-          ※ 安全性を保障するものではないことに注意してください。
-        </p>
-        {Object.entries(externalTools).map(([category, tools]) => (
-          <div
-            key={category}
-            id={category.toLowerCase().replace(/\s+/g, '-')}
-            className="mb-8"
-          >
-            <h3 className="text-xl font-bold mb-4 text-primary">{category}</h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              {tools.map((tool, index) => (
-                <ToolCard key={index} {...tool} isExternal={true} />
-              ))}
-            </div>
+        {/* 内部ツールセクション */}
+        <section id="internal-tools">
+          <h2 className="text-2xl font-bold mb-4 text-primary">内部ツール</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
+            {internalTools.map((tool, index) => (
+              <ToolCard key={index} {...tool} />
+            ))}
           </div>
-        ))}
-      </section>
-    </div>
+        </section>
+
+        {/* 外部ツールセクション */}
+        <section id="external-tools">
+          <h2 className="text-2xl font-bold mb-4 text-primary">
+            外部おすすめツール・サイト
+          </h2>
+          <p className="text-error mb-4">
+            ※ 安全性を保障するものではないことに注意してください。
+          </p>
+          {Object.entries(externalTools).map(([category, tools]) => (
+            <div
+              key={category}
+              id={category.toLowerCase().replace(/\s+/g, '-')}
+              className="mb-8"
+            >
+              <h3 className="text-xl font-bold mb-4 text-primary">
+                {category}
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                {tools.map((tool, index) => (
+                  <ToolCard key={index} {...tool} isExternal={true} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      </div>
+    </>
   );
 };
 

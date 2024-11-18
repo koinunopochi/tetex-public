@@ -1,3 +1,5 @@
+import { TOOL_SCHEMAS } from '@/constants/toolSchemas';
+import { SEOHead } from '@/layout/SEOHeadLayout/SEOHeadLayout';
 import { useState } from 'react';
 
 // コメント付きJSONをパースする関数
@@ -41,37 +43,55 @@ const FormatTool = () => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6 border rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">JSONとXML整形ツール</h2>
-      <div className="space-y-4">
-        <select
-          value={format}
-          onChange={(e) => setFormat(e.target.value)}
-          className="w-full p-2 border rounded bg-background-secondary"
-        >
-          <option value="json">JSON (コメント対応)</option>
-          <option value="xml">XML</option>
-        </select>
-        <textarea
-          placeholder={`${format.toUpperCase()}を入力してください（JSONはコメント可）`}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="w-full h-40 p-2 border rounded bg-background-secondary"
-        />
-        <button
-          onClick={handleFormat}
-          className="mt-4 w-full bg-background-secondary text-primary py-2 px-4 rounded-md hover:bg-accent2 transition-colors text-sm sm:text-base"
-        >
-          整形する
-        </button>
-        <textarea
-          placeholder="整形結果"
-          value={output}
-          readOnly
-          className="w-full h-40 p-2 border rounded bg-background-secondary"
-        />
+    <>
+      <SEOHead
+        title="JSON/XML フォーマッター"
+        description="JSONやXMLデータを整形し、可読性を向上させるオンラインツール。コメント付きJSONにも対応し、データ構造を見やすく表示します。"
+        path="/tools/formatter"
+        type="article"
+        keywords={[
+          'JSON',
+          'XML',
+          'フォーマッター',
+          'データ整形',
+          'バリデーション',
+          'シンタックスハイライト',
+          'コードフォーマット',
+        ]}
+        schema={TOOL_SCHEMAS.jsonXmlFormatter}
+      />
+      <div className="w-full max-w-2xl mx-auto p-6 border rounded-lg">
+        <h2 className="text-2xl font-bold mb-4">JSONとXML整形ツール</h2>
+        <div className="space-y-4">
+          <select
+            value={format}
+            onChange={(e) => setFormat(e.target.value)}
+            className="w-full p-2 border rounded bg-background-secondary"
+          >
+            <option value="json">JSON (コメント対応)</option>
+            <option value="xml">XML</option>
+          </select>
+          <textarea
+            placeholder={`${format.toUpperCase()}を入力してください（JSONはコメント可）`}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="w-full h-40 p-2 border rounded bg-background-secondary"
+          />
+          <button
+            onClick={handleFormat}
+            className="mt-4 w-full bg-background-secondary text-primary py-2 px-4 rounded-md hover:bg-accent2 transition-colors text-sm sm:text-base"
+          >
+            整形する
+          </button>
+          <textarea
+            placeholder="整形結果"
+            value={output}
+            readOnly
+            className="w-full h-40 p-2 border rounded bg-background-secondary"
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
