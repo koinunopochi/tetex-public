@@ -39,43 +39,43 @@ const ToolsRootPage = () => {
       title: 'Base64 エンコーダー/デコーダー',
       description:
         'テキストをBase64形式にエンコードしたり、Base64からデコードしたりするツールです。データの変換や送信時に便利です。',
-      link: '/tools/base64',
+      link: '/base64',
     },
     {
       title: 'JSON/XML フォーマッター',
       description:
         'JSONやXMLデータを整形し、読みやすく表示するツールです。コメント付きJSONにも対応しています。',
-      link: '/tools/format',
+      link: '/format',
     },
     {
       title: '改行文字変換ツール',
       description:
         'テキストの改行文字を変換します。一般的な改行文字の選択やカスタム文字の指定が可能です。',
-      link: '/tools/newline-converter',
+      link: '/newline-converter',
     },
     {
       title: 'URL エンコーダー/デコーダー',
       description:
         'URLの特殊文字をエンコード/デコードするツールです。Web開発やAPIテストに便利です。',
-      link: '/tools/url-encoder-decoder',
+      link: '/url-encoder-decoder',
     },
     {
       title: 'UNIX タイムスタンプ変換ツール',
       description:
         'UNIXタイムスタンプと人間が読める日時形式を相互に変換します。データ処理やログ解析に役立ちます。',
-      link: '/tools/unix-timestamp-converter',
+      link: '/unix-timestamp-converter',
     },
     {
       title: 'カラーコード変換ツール',
       description:
         'HEXカラーコードとRGBカラーコードを相互に変換します。Web設計やUIデザインに便利です。',
-      link: '/tools/color-code-converter',
+      link: '/color-code-converter',
     },
     {
       title: '正規表現テスター',
       description:
         '正規表現パターンをリアルタイムでテストし、マッチング結果を確認できるツールです。パターンの作成や検証、デバッグに役立ちます。',
-      link: '/tools/regex-tester',
+      link: '/regex-tester',
     },
   ];
 
