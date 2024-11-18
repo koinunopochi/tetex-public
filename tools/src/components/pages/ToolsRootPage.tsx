@@ -1,18 +1,76 @@
+import { WifiOff, Info, Wifi } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+const ToolTip = ({
+  children,
+  isUseWifi = true,
+}: {
+  children: React.ReactNode;
+  isUseWifi?: boolean;
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    <div className="relative inline-flex">
+      <div
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+        onTouchStart={() => setIsVisible(true)}
+        onTouchEnd={() => setIsVisible(false)}
+        aria-describedby="tooltip"
+      >
+        {children}
+      </div>
+      {isVisible && (
+        <div
+          id="tooltip"
+          role="tooltip"
+          className="absolute z-50 w-64 p-2 text-sm -top-2 right-8 
+          bg-background-main border border-accent1 rounded-md shadow-lg
+          text-primary transition-opacity duration-200"
+        >
+          <h4 className="font-semibold mb-1">
+            {!isUseWifi ? 'フロントエンド実装' : 'サーバーサイド実装'}
+          </h4>
+          <p className="text-secondary text-sm">
+            {!isUseWifi
+              ? 'このツールはブラウザ上で完結し、サーバーとの通信を行いません。データは外部に送信されることなく、ローカルで処理されます。'
+              : 'このツールはサーバーと通信を行います。データはサーバーに送信され、処理されます。'}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ToolCard = ({
   title,
   description,
   link,
   isExternal = false,
+  isUseWifi = true,
 }: {
   title: string;
   description: string;
   link: string;
   isExternal?: boolean;
+  isUseWifi?: boolean;
 }) => (
   <div className="shadow-md rounded-lg p-6 mb-4 border">
-    <h3 className="text-xl font-bold mb-2">{title}</h3>
+    <div className="flex items-center justify-between mb-2">
+      <h3 className="text-xl font-bold">{title}</h3>
+      <ToolTip isUseWifi={isUseWifi}>
+        <div className="flex items-center gap-1 text-secondary cursor-help">
+          {isUseWifi ? (
+            <Wifi size={20} className="text-accent1" />
+          ) : (
+            <WifiOff size={20} className="text-accent1" />
+          )}
+          <Info size={16} />
+        </div>
+      </ToolTip>
+    </div>
     <p className="mb-4">{description}</p>
     {isExternal ? (
       <a
@@ -33,6 +91,7 @@ const ToolCard = ({
     )}
   </div>
 );
+
 const ToolsRootPage = () => {
   const internalTools = [
     {
@@ -40,42 +99,49 @@ const ToolsRootPage = () => {
       description:
         'テキストをBase64形式にエンコードしたり、Base64からデコードしたりするツールです。データの変換や送信時に便利です。',
       link: '/base64',
+      isUseWifi: false,
     },
     {
       title: 'JSON/XML フォーマッター',
       description:
         'JSONやXMLデータを整形し、読みやすく表示するツールです。コメント付きJSONにも対応しています。',
       link: '/format',
+      isUseWifi: false,
     },
     {
       title: '改行文字変換ツール',
       description:
         'テキストの改行文字を変換します。一般的な改行文字の選択やカスタム文字の指定が可能です。',
       link: '/newline-converter',
+      isUseWifi: false,
     },
     {
       title: 'URL エンコーダー/デコーダー',
       description:
         'URLの特殊文字をエンコード/デコードするツールです。Web開発やAPIテストに便利です。',
       link: '/url-encoder-decoder',
+      isUseWifi: false,
     },
     {
       title: 'UNIX タイムスタンプ変換ツール',
       description:
         'UNIXタイムスタンプと人間が読める日時形式を相互に変換します。データ処理やログ解析に役立ちます。',
       link: '/unix-timestamp-converter',
+      isUseWifi: false,
     },
     {
       title: 'カラーコード変換ツール',
       description:
         'HEXカラーコードとRGBカラーコードを相互に変換します。Web設計やUIデザインに便利です。',
       link: '/color-code-converter',
+      isUseWifi: false,
     },
     {
       title: '正規表現テスター',
       description:
         '正規表現パターンをリアルタイムでテストし、マッチング結果を確認できるツールです。パターンの作成や検証、デバッグに役立ちます。',
       link: '/regex-tester',
+      isUseWifi: false,
     },
   ];
 
@@ -179,27 +245,76 @@ const ToolsRootPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">開発ツール</h1>
+      <h1 className="text-3xl font-bold mb-6 text-primary">開発ツール</h1>
 
-      <h2 className="text-2xl font-bold mb-4">内部ツール</h2>
-      <div className="grid md:grid-cols-2 gap-4 mb-8">
-        {internalTools.map((tool, index) => (
-          <ToolCard key={index} {...tool} />
-        ))}
-      </div>
+      {/* 目次セクション */}
+      <nav className="mb-8 p-4 bg-background-secondary rounded-lg">
+        <h2 className="text-xl font-bold mb-2 text-primary">目次</h2>
+        <ul className="space-y-2">
+          <li>
+            <a
+              href="#internal-tools"
+              className="link transition-colors hover:text-accent1"
+            >
+              内部ツール
+            </a>
+          </li>
+          <li>
+            <a
+              href="#external-tools"
+              className="link transition-colors hover:text-accent1"
+            >
+              外部おすすめツール・サイト
+            </a>
+            <ul className="ml-4 mt-1 space-y-1">
+              {Object.keys(externalTools).map((category) => (
+                <li key={category}>
+                  <a
+                    href={`#${category.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="link transition-colors hover:text-accent1"
+                  >
+                    {category}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        </ul>
+      </nav>
 
-      <h2 className="text-2xl font-bold mb-4">外部おすすめツール・サイト</h2>
-      <p className='text-red-400'>※ 安全性を保障するものではないことに注意してください。</p>
-      {Object.entries(externalTools).map(([category, tools]) => (
-        <div key={category} className="mb-8">
-          <h3 className="text-xl font-bold mb-4">{category}</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            {tools.map((tool, index) => (
-              <ToolCard key={index} {...tool} isExternal={true} />
-            ))}
-          </div>
+      {/* 内部ツールセクション */}
+      <section id="internal-tools">
+        <h2 className="text-2xl font-bold mb-4 text-primary">内部ツール</h2>
+        <div className="grid md:grid-cols-2 gap-4 mb-8">
+          {internalTools.map((tool, index) => (
+            <ToolCard key={index} {...tool} />
+          ))}
         </div>
-      ))}
+      </section>
+
+      {/* 外部ツールセクション */}
+      <section id="external-tools">
+        <h2 className="text-2xl font-bold mb-4 text-primary">
+          外部おすすめツール・サイト
+        </h2>
+        <p className="text-error mb-4">
+          ※ 安全性を保障するものではないことに注意してください。
+        </p>
+        {Object.entries(externalTools).map(([category, tools]) => (
+          <div
+            key={category}
+            id={category.toLowerCase().replace(/\s+/g, '-')}
+            className="mb-8"
+          >
+            <h3 className="text-xl font-bold mb-4 text-primary">{category}</h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {tools.map((tool, index) => (
+                <ToolCard key={index} {...tool} isExternal={true} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
     </div>
   );
 };
