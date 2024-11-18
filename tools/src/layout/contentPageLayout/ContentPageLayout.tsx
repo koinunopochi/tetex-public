@@ -11,7 +11,7 @@ const ContentPageLayout: React.FC<ContentPageLayoutProps> = ({
 }) => {
   return (
     <div
-      className={`pt-5 ${className}`}
+      className={`pt-14 ${className}`}
     >
       {children}
     </div>
