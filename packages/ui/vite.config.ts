@@ -13,6 +13,11 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -20,7 +25,7 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format}.js`,
     },
-     rollupOptions: {
+    rollupOptions: {
       external: ['react', 'react-dom', 'tailwindcss'],
       output: {
         globals: {
@@ -31,6 +36,5 @@ export default defineConfig({
         assetFileNames: 'index.css',
       },
     },
-    },
   },
-);
+});
