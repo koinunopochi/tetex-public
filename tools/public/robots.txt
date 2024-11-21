@@ -1,0 +1,13 @@
+# robots.txt
+User-agent: *
+Allow: /
+
+# サイトマップの指定
+Sitemap: https://tools.tetex.tech/sitemap.xml
+
+# キャッシュディレクトリのクロール禁止
+Disallow: /cache/
+Disallow: /tmp/
+
+# API経由のアクセス制限
+Disallow: /api/
