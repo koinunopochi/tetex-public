@@ -1,13 +1,13 @@
 import { TOOL_SCHEMAS } from '@/constants/toolSchemas';
 import { SEOHead } from '@/layout/SEOHeadLayout/SEOHeadLayout';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 
 const ColorCodeConverter = () => {
   const [hex, setHex] = useState('#000000');
   const [rgb, setRgb] = useState({ r: 0, g: 0, b: 0 });
 
   useEffect(() => {
-    const hexToRgb = (hex) => {
+    const hexToRgb = (hex: string) => {
       const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
       return result
         ? {
@@ -24,11 +24,11 @@ const ColorCodeConverter = () => {
     }
   }, [hex]);
 
-  const handleHexChange = (e) => {
+  const handleHexChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setHex(e.target.value);
   };
 
-  const handleRgbChange = (color, value) => {
+  const handleRgbChange = (color: string, value: string) => {
     const newRgb = { ...rgb, [color]: parseInt(value) };
     setRgb(newRgb);
     setHex(

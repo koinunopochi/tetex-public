@@ -3,7 +3,7 @@ import { SEOHead } from '@/layout/SEOHeadLayout/SEOHeadLayout';
 import { useState } from 'react';
 
 // コメント付きJSONをパースする関数
-function parseJSONWithComments(json) {
+function parseJSONWithComments(json: string) {
   const regex = /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
   const commentLess = json.replace(regex, (m, g) => (g ? '' : m));
   return JSON.parse(commentLess);
@@ -19,6 +19,7 @@ const FormatTool = () => {
       const obj = parseJSONWithComments(json);
       return JSON.stringify(obj, null, 2);
     } catch (e) {
+      // @ts-ignore
       return '無効なJSONです: ' + e.message;
     }
   };
@@ -30,6 +31,7 @@ const FormatTool = () => {
       const serializer = new XMLSerializer();
       return serializer.serializeToString(xmlDoc).replace(/></g, '>\n<');
     } catch (e) {
+      // @ts-ignore
       return '無効なXMLです: ' + e.message;
     }
   };
