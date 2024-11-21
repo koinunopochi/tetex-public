@@ -2,22 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
-
-// https://vite.dev/config/
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      // 型定義ファイルの生成
-      insertTypesEntry: true,
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-    },
-  },
+  plugins: [react(), dts(), tsconfigPaths()],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -26,14 +14,13 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'tailwindcss'],
+      external: ['react', 'react-dom', 'react-router-dom'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react-router-dom': 'ReactRouterDOM',
         },
-        // 固定の文字列を指定
-        assetFileNames: 'index.css',
       },
     },
   },
