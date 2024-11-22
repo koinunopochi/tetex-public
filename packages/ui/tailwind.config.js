@@ -4,7 +4,17 @@ module.exports = {
   prefix: 'ttx-',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        morse: 'morse 3s infinite linear',
+      },
+      keyframes: {
+        morse: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(400%)' }
+        }
+      }
+    }
   },
   plugins: [],
 };

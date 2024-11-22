@@ -16,6 +16,11 @@ export default defineConfig({
       exclude: ['node_modules', 'dist'],
     }),
   ],
+  server: {
+    port: 3000, // デフォルトポートを3000に設定
+    open: true, // 起動時にブラウザを自動で開く
+    host: true, // IPアドレスでのアクセスを許可
+  },
   css: {
     postcss: {
       plugins: [tailwindcss, autoprefixer],
