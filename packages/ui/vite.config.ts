@@ -9,10 +9,12 @@ import tailwindcss from 'tailwindcss';
 export default defineConfig({
   plugins: [
     react(),
+    tsconfigPaths(),
     dts({
       insertTypesEntry: true,
+      include: ['src'], // 型定義を生成するファイルを指定
+      exclude: ['node_modules', 'dist'],
     }),
-    tsconfigPaths(),
   ],
   css: {
     postcss: {

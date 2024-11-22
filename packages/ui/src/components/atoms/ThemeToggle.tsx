@@ -3,7 +3,7 @@ import { Moon, Sun, Leaf } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { ThemeName } from '@/themes/themes';
 
-interface ThemeToggleProps {
+export interface ThemeToggleProps {
   className?: string;
 }
 

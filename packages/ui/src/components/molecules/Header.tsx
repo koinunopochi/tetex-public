@@ -7,18 +7,27 @@ import { BreadcrumbItem } from '@/types/breadcrumb';
 
 export interface HeaderProps {
   className?: string;
+  defaultLabel?: string;
+  defaultPath?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ className }) => {
+export const Header: React.FC<HeaderProps> = ({
+  className,
+  defaultLabel = null,
+  defaultPath = null,
+}) => {
   const location = useLocation();
 
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
     const pathnames = location.pathname.split('/').filter((x) => x);
 
-    const breadcrumbs: BreadcrumbItem[] = [
-      { label: 'tetex.tech', url: 'https://tetex.tech' },
-      { label: '開発支援ツール', path: '/' },
-    ];
+    const breadcrumbs: BreadcrumbItem[] =
+      defaultLabel && defaultPath
+        ? [
+            { label: 'tetex.tech', url: 'https://tetex.tech' },
+            { label: defaultLabel, path: defaultPath },
+          ]
+        : [{ label: 'tetex.tech', url: 'https://tetex.tech' }];
 
     pathnames.reduce((acc, curr, idx) => {
       const path = `${acc}/${curr}`;
@@ -73,5 +82,3 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
     </header>
   );
 };
-
-export default Header;

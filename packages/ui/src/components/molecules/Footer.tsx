@@ -1,6 +1,8 @@
 import { Heart, Mail, Github } from 'lucide-react';
 
-const Footer = () => {
+export interface FooterProps{}
+
+export const Footer = () => {
   const currentYear = '2024';
 
   return (
@@ -92,5 +94,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

@@ -3,11 +3,12 @@ import './themes/theme-styles.css';
 import './index.css';
 
 // コンポーネントとプロバイダーのエクスポート
-export { default as Header } from './components/molecules/Header';
-export { default as Footer } from './components/molecules/Footer';
-export { ThemeProvider, useTheme } from './contexts/ThemeContext';
+export * from './components/molecules/Header';
+export * from './components/molecules/Footer';
+export * from './contexts/ThemeContext';
+export * from './components/layout/BasePageLayout'
 
 // themesもエクスポート
 export { themes } from '@/themes/themes';
 export type { ThemeName } from '@/themes/themes';
-export type { HeaderProps } from './components/molecules/Header';
+export type * from './components/molecules/Header';

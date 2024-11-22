@@ -28,7 +28,7 @@
     "esModuleInterop": false,
     "moduleResolution": "Node",
 
-    // "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "declaration": true,
     "declarationDir": "./dist",
     "outDir": "./dist",
