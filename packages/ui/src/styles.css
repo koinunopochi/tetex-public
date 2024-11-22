@@ -1,0 +1,12 @@
+@keyframes morse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+.ttx-animate-morse {
+  animation: morse 3s infinite linear;
+}

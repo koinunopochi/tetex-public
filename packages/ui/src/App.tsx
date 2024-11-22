@@ -1,13 +1,14 @@
-import Footer from './components/molecules/Footer';
-import Header from './components/molecules/Header';
+import { Loading } from './components/atoms/Loading';
+import { BasePageLayout } from './components/layout/BasePageLayout';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
   return (
     <>
       <ThemeProvider>
-        <Header />
-        <Footer/>
+        <BasePageLayout>
+          <Loading />
+        </BasePageLayout>
       </ThemeProvider>
     </>
   );
