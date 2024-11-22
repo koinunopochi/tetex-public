@@ -68,7 +68,7 @@ const Footer = () => {
                 <Mail size={24} />
               </a>
               <a
-                href="https://github.com/koinunopochi/tetex-public"
+                href="https://github.com/koinunopochi/ttx-public"
                 className="link transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"

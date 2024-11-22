@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!-- sub domain などのページとして独立して利用するため、htmlとして保存-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tetex.tech - Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #ffa500;
+      --color-accent1: #e69400;
+      --color-accent2: #ffb733;
+      --color-text: #333333;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #ffffff;
+      color: var(--color-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: var(--color-text);
+    }
+
+    .morse-line {
+      height: 2px;
+      width: 100%;
+      background: var(--color-text);
+      margin: 1rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .morse-highlight {
+      position: absolute;
+      height: 100%;
+      width: 30%;
+      background: var(--color-primary);
+      animation: morse 3s infinite linear;
+    }
+
+    .message {
+      margin: 2rem 0;
+      font-size: 1.2rem;
+    }
+
+    .tools-link {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--color-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .tools-link:hover {
+      background: var(--color-accent1);
+    }
+
+    @keyframes morse {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      100% {
+        transform: translateX(400%);
+      }
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2rem;
+      }
+
+      .message {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo">tetex.tech</div>
+    <div class="morse-line">
+      <div class="morse-highlight"></div>
+    </div>
+    <div class="subtitle">technology × text</div>
+    <div class="message">
+      <p>メインサイトは現在開発中です。</p>
+      <p>tetex.techの各種ツールは以下のURLでご利用いただけます。</p>
+    </div>
+    <a href="https://tools.tetex.tech" class="tools-link">Tools を見る</a>
+  </div>
+</body>
+
+</html>

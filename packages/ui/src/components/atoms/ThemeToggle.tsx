@@ -31,11 +31,11 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ className }) => {
   return (
     <button
       onClick={handleThemeChange}
-      className={`flex items-center w-full text-left px-4 py-2 text-sm rounded-md 
-                  text-text-primary hover:text-primary transition-colors duration-300 ease-in-out
+      className={`ttx-flex ttx-items-center ttx-w-full ttx-text-left ttx-px-4 ttx-py-2 ttx-text-sm ttx-rounded-md 
+                  ttx-text-text-primary hover:ttx-text-primary ttx-transition-colors ttx-duration-300 ttx-ease-in-out
                   ${className}`}
     >
-      <ThemeIcon className="mr-2" />
+      <ThemeIcon className="ttx-mr-2" />
       {themeName === 'light' && 'ダークモードに切り替え'}
       {themeName === 'dark' && '自然テーマに切り替え'}
       {themeName === 'nature' && 'ライトモードに切り替え'}

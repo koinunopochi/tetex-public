@@ -9,11 +9,11 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "Bundler",
-    // "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": false,
+    "noEmit": true,
     "jsx": "react-jsx",
 
     /* Linting */
@@ -24,12 +24,19 @@
 
     "types": ["node"],
 
+    "allowJs": false,
+    "esModuleInterop": false,
+    "moduleResolution": "Node",
+
+    // "emitDeclarationOnly": true,
     "declaration": true,
-    "outDir": "dist",
+    "declarationDir": "./dist",
+    "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
