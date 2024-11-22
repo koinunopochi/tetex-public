@@ -1,5 +1,5 @@
 // index.ts
-import './styles/globals.css';
+import './themes/theme-styles.css';
 
 // コンポーネントとプロバイダーのエクスポート
 export { default as Header } from './components/molecules/Header';
